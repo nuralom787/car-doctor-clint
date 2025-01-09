@@ -3,6 +3,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import SecondNav from "../Shared/SecondNav";
 import Footer from "../Shared/Footer";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Bookings = () => {
     const { user } = useContext(AuthContext);
@@ -11,10 +12,12 @@ const Bookings = () => {
     const url = `http://localhost:5000/bookings?email=${user.email}`;
 
     useEffect(() => {
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                setBookings(data);
+        axios.get(url, { withCredentials: true, })
+            .then(result => {
+                setBookings(result.data);
+            })
+            .catch(error => {
+                console.log(error.message);
             })
     }, []);
 
@@ -22,8 +25,6 @@ const Bookings = () => {
 
     // Delete Booking Item.
     const handleDelete = (id) => {
-        // console.log(id);
-
         // Call Delete API.
         Swal.fire({
             title: "Are you sure?",

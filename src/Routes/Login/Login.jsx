@@ -3,6 +3,7 @@ import logo from '../../assets/images/login/login.svg'
 import { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import SecondNav from '../Shared/SecondNav';
+import axios from 'axios';
 
 
 const Login = () => {
@@ -19,9 +20,18 @@ const Login = () => {
         // Login User Function.
         SigninUser(email, password)
             .then(result => {
-                console.log(result.user);
                 if (result.user) {
-                    navigate(location.state ? location.state : "/");
+                    const user = { email };
+                    axios.post("http://localhost:5000/jwt", user, { withCredentials: true })
+                        .then(result => {
+                            console.log(result.data);
+                            if (result.data.success) {
+                                navigate(location.state ? location.state : "/");
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error.message)
+                        })
                 }
             })
             .catch(error => {
