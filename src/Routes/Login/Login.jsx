@@ -21,17 +21,17 @@ const Login = () => {
         SigninUser(email, password)
             .then(result => {
                 if (result.user) {
-                    const user = { email };
-                    axios.post("http://localhost:5000/jwt", user, { withCredentials: true })
-                        .then(result => {
-                            console.log(result.data);
-                            if (result.data.success) {
-                                navigate(location.state ? location.state : "/");
-                            }
-                        })
-                        .catch(error => {
-                            console.log(error.message)
-                        })
+                    //     const user = { email };
+                    //     axios.post("https://react-car-doctor-server-five.vercel.app/jwt", user, { withCredentials: true })
+                    //         .then(result => {
+                    //             console.log(result.data);
+                    //             if (result.data.success) {
+                    navigate(location.state ? location.state : "/");
+                    //             }
+                    //         })
+                    //         .catch(error => {
+                    //             console.log(error.message)
+                    //         })
                 }
             })
             .catch(error => {

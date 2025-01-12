@@ -4,15 +4,16 @@ import SecondNav from "../Shared/SecondNav";
 import Footer from "../Shared/Footer";
 import Swal from "sweetalert2";
 import axios from "axios";
+import useAxios from "../../Hooks/useAxios";
 
 const Bookings = () => {
     const { user } = useContext(AuthContext);
     const [bookings, setBookings] = useState([]);
-
-    const url = `http://localhost:5000/bookings?email=${user.email}`;
+    const axiosSecure = useAxios();
+    const url = `/bookings?email=${user.email}`;
 
     useEffect(() => {
-        axios.get(url, { withCredentials: true, })
+        axiosSecure.get(url)
             .then(result => {
                 setBookings(result.data);
             })

@@ -7,7 +7,7 @@ const Services = () => {
 
 
     useEffect(() => {
-        fetch("http://localhost:5000/services")
+        fetch("https://react-car-doctor-server-five.vercel.app/services")
             .then(res => res.json())
             .then(data => {
                 setService(data);

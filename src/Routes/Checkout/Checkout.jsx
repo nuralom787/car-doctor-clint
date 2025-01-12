@@ -13,7 +13,7 @@ const Checkout = () => {
 
     // Load Initial Service Data For Checkout.
     useEffect(() => {
-        fetch(`http://localhost:5000/checkout/${id}`)
+        fetch(`https://react-car-doctor-server-five.vercel.app/checkout/${id}`)
             .then(res => res.json())
             .then(data => {
                 setService(data);
@@ -47,7 +47,7 @@ const Checkout = () => {
         };
 
         // Post Data.
-        fetch("http://localhost:5000/bookings", {
+        fetch("https://react-car-doctor-server-five.vercel.app/bookings", {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

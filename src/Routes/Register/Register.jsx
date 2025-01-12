@@ -17,14 +17,14 @@ const Register = () => {
 
 
         const userData = { name, email, password };
-        console.log(userData);
+        // console.log(userData);
 
 
         // Call Create User Function.
         createNewUser(email, password)
             .then(result => {
                 result.user.displayName = name;
-                console.log(result.user);
+                // console.log(result.user);
             })
             .catch(error => {
                 console.log(error.message);
