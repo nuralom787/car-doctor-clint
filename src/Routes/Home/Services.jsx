@@ -9,7 +9,7 @@ const Services = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/services?sort=${sort}&search=${search}`)
+        fetch(`https://react-car-doctor-server-five.vercel.app/services?sort=${sort}&search=${search}`)
             .then(res => res.json())
             .then(data => {
                 setService(data);
